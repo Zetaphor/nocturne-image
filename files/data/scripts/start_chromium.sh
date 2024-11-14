@@ -50,6 +50,7 @@ CHROMIUM_CMD="xinit $CHROMIUM_BINARY \
 	--use-fake-ui-for-media-stream \
 	--use-fake-device-for-media-stream \
 	--disable-sync \
+	--remote-debugging-address=0.0.0.0 \
 	--remote-debugging-port=9222 \
 	--window-size=$DISP_REZ \
 	--window-position=0,0 \
@@ -65,7 +66,7 @@ CHROMIUM_CMD="xinit $CHROMIUM_BINARY \
 	--fast-start \
 	--disable-pinch \
 	--disable-translate \
-	--overscroll-history-navigation=0 \ 
+	--overscroll-history-navigation=0 \
 	--hide-scrollbars \
 	--disable-overlay-scrollbar \
 	--disable-features=OverlayScrollbar \

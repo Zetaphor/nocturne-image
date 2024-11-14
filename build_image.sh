@@ -19,7 +19,7 @@ PACKAGES="systemd systemd-sysv dbus kmod"
 # base packages
 PACKAGES="$PACKAGES usbutils htop nano tree file less locales sudo dialog apt"
 # stuff for networking
-PACKAGES="$PACKAGES wget curl iputils-ping iputils-tracepath iputils-arping iproute2 net-tools openssh-server ntp"
+PACKAGES="$PACKAGES wget curl iputils-ping iputils-tracepath iputils-arping iproute2 net-tools openssh-server ntp socat"
 # minimal xorg
 PACKAGES="$PACKAGES xserver-xorg-core xserver-xorg-video-fbdev xterm xinit x11-xserver-utils shared-mime-info"
 # xorg input
@@ -212,7 +212,7 @@ cp ${FILES_DATA}/etc/chromium/policies/managed/managed_policies.json "${INSTALL_
 
 ################################################ Setup swapfile ################################################
 
-# this is needed since webpages will run out of memory and will not load 
+# this is needed since webpages will run out of memory and will not load
 
 echo "enabling swap"
 in_target fallocate -l 300M /swapfile
@@ -291,6 +291,7 @@ install_service backlight.service
 install_script start_chromium.sh
 install_script chromium_settings.sh
 install_service chromium.service
+install_service chromium-debugger.service
 
 in_target chown -R "$USER_NAME" /scripts
 

@@ -1,0 +1,12 @@
+[Unit]
+Description=Chrome Debug Proxy
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/socat TCP-LISTEN:9223,fork TCP:127.0.0.1:9222
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
