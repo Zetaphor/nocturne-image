@@ -28,3 +28,25 @@ Put the files in the `stock` directory and run the build script.
 ```sh
 ./build_image.sh ./stock
 ```
+
+# Building the image
+
+```sh
+sudo ./build_image.sh
+```
+
+If there is a partial failure the mount points in `./temp` will be left behind.
+
+```sh
+sudo umount ./temp/system_a
+sudo umount ./temp/swapfile
+sudo umount ./temp/data
+```
+
+Then remove the temp directory.
+
+```sh
+rm -rf ./temp
+```
+
+And then re-run the build script.
