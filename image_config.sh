@@ -27,5 +27,5 @@ DISTRO_VARIANT="minbase"
 EXTRA_PACKAGES=""
 
 # timezone and locale
-TIMEZONE="America/Toronto"
+TIMEZONE="America/Chicago"
 LOCALE="en_US.UTF-8"
