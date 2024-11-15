@@ -74,6 +74,14 @@ install_service() {
 
 ################################################ Entrypoint ################################################
 
+# Delete the stock directory
+rm -rf ./stock
+
+# Unzip the 7z file into the stock directory
+7z x ./stock.7z -o./stock
+
+rm -rf ./temp
+
 echo "Going to install Debian $DISTRO_BRANCH $DISTRO_VARIANT $ARCHITECTURE into image at $EXISTING_DUMP"
 
 # need to be root
@@ -104,6 +112,24 @@ if [ ! -f "${EXISTING_DUMP}/settings.ext4" ]; then
     echo "Missing expected ${EXISTING_DUMP}/settings.ext4"
     exit 1
 fi
+
+# Unmount the existing partitions if they are mounted
+if mountpoint -q "$INSTALL_PATH"; then
+    echo "Unmounting $INSTALL_PATH"
+    umount -l "$INSTALL_PATH" || true
+fi
+
+if mountpoint -q "$SYS_PATH"; then
+    echo "Unmounting $SYS_PATH"
+    umount -l "$SYS_PATH" || true
+fi
+
+if mountpoint -q "$TEMP_DIR/swapfile"; then
+    echo "Unmounting $TEMP_DIR/swapfile"
+    umount -l "$TEMP_DIR/swapfile" || true
+fi
+
+rm -rf ${TEMP_DIR}
 
 mkdir -p ${TEMP_DIR}
 
